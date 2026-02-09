@@ -20,7 +20,7 @@
 
 | 类别          | 技术                                                |
 | ------------- | --------------------------------------------------- |
-| **框架**      | Next.js 16 + React 19 + TypeScript                  |
+| **框架**      | Next.js 16 + React 19 + TypeScript + Dify           |
 | **UI 组件库** | DeepChat + Lucide React 图标                        |
 | **样式方案**  | Tailwind CSS v4 + PostCSS                           |
 | **图像处理**  | Dify 工作流（内置多模态模型）                       |
