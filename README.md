@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🪨 StoneChat — 基于 AI 的泌尿系结石智能识别助手
 
-## Getting Started
+> 利用 **Dify 工作流** 与 **多模态 AI 模型**，自动分析用户上传的结石显微图像，智能判断结石类型（如草酸钙、尿酸、磷酸铵镁等），为临床辅助诊断提供参考。
 
-First, run the development server:
+![示例截图](/public/images/login.png)
+![示例截图](/public/images/应用.png)
+
+---
+
+## ✨ 核心功能
+
+- 📷 **上传结石图像**：支持 JPG/PNG 等常见格式
+- 🧠 **AI 自动分析**：通过 Dify 编排的多步工作流（图像理解 → 特征提取 → 类型分类）
+- 📊 **结构化结果**：清晰展示结石类型、置信度及医学建议
+- 🌐 **响应式设计**：适配桌面与移动端，使用 Tailwind CSS 构建
+
+---
+
+## 🛠 技术栈
+
+| 类别          | 技术                                                |
+| ------------- | --------------------------------------------------- |
+| **框架**      | Next.js 16 + React 19 + TypeScript                  |
+| **UI 组件库** | DeepChat + Lucide React 图标                        |
+| **样式方案**  | Tailwind CSS v4 + PostCSS                           |
+| **图像处理**  | Dify 工作流（内置多模态模型）                       |
+| **辅助工具**  | motion、supabase、Axios、React Markdown（结果渲染） |
+
+---
+
+## 🚀 快速开始
+
+### 前置要求
+
+- Node.js ≥ 18.x
+- npm / pnpm / yarn（推荐 pnpm）
+- 已在 [Dify](https://cloud.dify.ai/) 创建应用并配置好**结石识别工作流**
+
+### 安装依赖
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# 使用 pnpm（推荐）
+pnpm install
+
+# 或 npm
+npm install
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
