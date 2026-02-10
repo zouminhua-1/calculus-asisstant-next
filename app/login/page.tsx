@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Activity, Lock, User, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  Activity,
+  Lock,
+  User,
+  ArrowRight,
+  ShieldCheck,
+  Loader2,
+} from "lucide-react";
 import { setItem } from "@analytics/storage-utils";
 import { Toaster, toast } from "sonner";
 import { loginUser } from "@/services/auth";
@@ -15,6 +22,7 @@ const AuthPage: React.FC = () => {
   const [name, setName] = useState("doctor1");
   const [password, setPassword] = useState("@test1234");
   const navigate = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async () => {
     if (isLogin) {
@@ -22,6 +30,7 @@ const AuthPage: React.FC = () => {
         toast.warning("请填写用户名和密码", { position: "top-center" });
         return;
       }
+      setIsLoading(true);
       const { data, error } = await loginUser({ name, pwd: password });
       if (!error) {
         setItem(LOGIN_USER, data, { storage: "sessionStorage" });
@@ -30,6 +39,7 @@ const AuthPage: React.FC = () => {
       } else {
         toast.error("账号或密码错误", { position: "top-center" });
       }
+      setIsLoading(false);
     }
   };
 
@@ -99,10 +109,24 @@ const AuthPage: React.FC = () => {
 
             <button
               onClick={onSubmit}
-              className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold shadow-lg shadow-blue-200 flex items-center justify-center gap-2 active:scale-[0.98] transition-all"
+              disabled={isLoading}
+              className={`w-full mt-8 py-4 rounded-2xl font-bold shadow-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
+                isLoading
+                  ? "bg-blue-400 cursor-not-allowed text-white/80"
+                  : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200"
+              }`}
             >
-              {isLogin ? "立即登录" : "注册账号"}
-              <ArrowRight size={18} />
+              {isLoading ? (
+                <>
+                  <Loader2 className="animate-spin" size={18} />
+                  <span>验证中...</span>
+                </>
+              ) : (
+                <>
+                  {isLogin ? "立即登录" : "注册账号"}
+                  <ArrowRight size={18} />
+                </>
+              )}
             </button>
           </motion.div>
         </AnimatePresence>
