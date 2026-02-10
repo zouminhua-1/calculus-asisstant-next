@@ -37,7 +37,7 @@ export const introPanelHtml = `
       text-align: left;
     ">
       <p style="margin: 0; color: #434343; font-size: 14px; line-height: 1.5;">
-        上传泌尿系或胆道影像（如 CT、超声），AI 将自动识别结石位置、大小及密度，提供初步分析参考。
+        请上传您需要分析的图像资料，如果能添加一些描述信息，将更利于我进行结果分析
       </p>
     </div>
 

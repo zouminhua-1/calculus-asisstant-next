@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } },
-) {
+type Context = {
+  params: Promise<{ id: string }>;
+};
+
+export async function DELETE(request: Request, context: Context) {
   const { user } = await request.json();
-  const { id } = await params;
+  const { id } = await context.params;
   const apiKey = process.env.NEXT_PUBLIC_DIFY_API_KEY;
   const baseUrl = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
 
