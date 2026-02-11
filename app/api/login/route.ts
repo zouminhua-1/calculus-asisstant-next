@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { supabaseServer } from "@/lib/supabase";
 import { ApiResponse, UserInfo } from "@/types/api";
 import db from "@/lib/prisma";
 import { cookies } from "next/headers";

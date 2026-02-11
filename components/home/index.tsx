@@ -10,8 +10,6 @@ import { HistoryDrawer } from "@/components/HistoryDrawer";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { DEFAULT_CHAT_USER } from "@/common/constant";
 import { confirm } from "@/ui/confirm";
-import prisma from "@/lib/prisma";
-
 const Home: React.FC = () => {
   const chatRef = useRef<any>(null);
   const user = useCurrentUser();

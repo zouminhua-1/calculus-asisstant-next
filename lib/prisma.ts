@@ -5,7 +5,7 @@ const globalForPrisma = global as unknown as {
   prisma: PrismaClient;
 };
 
-const connectionString = `${process.env.NEXT_PUBLIC_DATABASE_URL}`;
+const connectionString = `${process.env.DATABASE_URL}`;
 const adapter = new PrismaPg({ connectionString });
 
 console.log("connectionString: ", connectionString);
