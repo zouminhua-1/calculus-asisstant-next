@@ -64,6 +64,11 @@ export const ChatArea = forwardRef<any, ChatAreaProps>(
             },
           }}
           connect={{ handler: requestHandler, stream: true }}
+          errorMessages={{
+            overrides: {
+              default: "请求失败，请稍后再试",
+            },
+          }}
           style={{
             height: "90vh",
             width: "100vw",
@@ -95,6 +100,7 @@ export const ChatArea = forwardRef<any, ChatAreaProps>(
           }}
           textInput={{
             placeholder: { text: "输入问题或发送图片..." },
+            characterLimit: 500,
             styles: {
               container: {
                 minHeight: "40px",

@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  // 用户名：必填，唯一索引
+  username  String   @unique
+  // 密码：必填 (存储时务必使用 bcrypt 加密后的哈希值)
+  password  String
+  // 邮箱：可选
+  email     String?  @unique
+  // 性别：可选 (也可以使用 enum 定义，这里使用 String 较为灵活)
+  gender    String?
+  // 自动管理创建和更新时间
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users") // 建议将数据库表名映射为小写的 users
+}

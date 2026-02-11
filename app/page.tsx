@@ -1,5 +1,4 @@
 import Home from "@/components/home";
-
-export default function Index() {
+export default async function Index() {
   return <Home />;
 }

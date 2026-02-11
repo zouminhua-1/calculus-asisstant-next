@@ -20,7 +20,7 @@ export function proxy(request: NextRequest) {
 
   // 2. 反向拦截：已登录用户访问登录页，自动跳回聊天主页
   if (token && pathname === "/login") {
-    return NextResponse.redirect(new URL("/chat", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   // 继续执行后续请求

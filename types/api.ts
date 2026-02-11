@@ -5,7 +5,7 @@ export interface ApiResponse<T = any> {
 }
 
 export interface UserInfo {
-  id: string;
+  id: string | number;
   user_name: string;
   email?: string;
   avatar_url?: string;

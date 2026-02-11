@@ -1,4 +1,4 @@
-# 🪨 StoneChat — 基于 AI 的泌尿系结石智能识别助手
+# 🪨 StoneChat — 基于 AI 大模型的结石智能识别助手
 
 > 利用 **Dify 工作流** 与 **多模态 AI 模型**，自动分析用户上传的结石显微图像，智能判断结石类型（如草酸钙、尿酸、磷酸铵镁等），为临床辅助诊断提供参考。
 
@@ -33,6 +33,9 @@
 ### 前置要求
 
 - Node.js ≥ 18.x
+- 申请 [Supabase](https://supabase.com/) 账号，以及 [Dify](https://cloud.dify.ai/) 账号
+- 创建一个 Supabase 项目，并获取PUBLISHABLE_KEY
+- 获取Dify API KEY
 - npm / pnpm / yarn（推荐 pnpm）
 - 已在 [Dify](https://cloud.dify.ai/) 创建应用并配置好**结石识别工作流**
 
