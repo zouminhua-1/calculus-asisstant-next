@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const user = searchParams.get("user");
 
   // 从服务端环境变量获取，不需要 NEXT_PUBLIC_ 前缀，更安全
-  const DIFY_API_KEY = process.env.NEXT_PUBLIC_DIFY_API_KEY;
+  const DIFY_API_KEY = process.env.DIFY_API_KEY;
   const DIFY_BASE_URL = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
 
   try {

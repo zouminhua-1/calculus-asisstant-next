@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   const user = searchParams.get("user");
   const conversation_id = searchParams.get("conversation_id");
 
-  const apiKey = process.env.NEXT_PUBLIC_DIFY_API_KEY;
+  const apiKey = process.env.DIFY_API_KEY;
   const baseUrl = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
 
   try {

@@ -7,7 +7,7 @@ type Context = {
 export async function DELETE(request: Request, context: Context) {
   const { user } = await request.json();
   const { id } = await context.params;
-  const apiKey = process.env.NEXT_PUBLIC_DIFY_API_KEY;
+  const apiKey = process.env.DIFY_API_KEY;
   const baseUrl = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
 
   try {
