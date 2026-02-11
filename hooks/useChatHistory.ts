@@ -2,8 +2,6 @@ import { useState } from "react";
 import request from "@/lib/request";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
-import { DEFAULT_CHAT_USER } from "@/common/constant";
-
 interface UseChatHistoryReturn {
   historyList: any[];
   isListLoading: boolean;
@@ -15,9 +13,10 @@ export const useChatHistory = (): UseChatHistoryReturn => {
   const [isListLoading, setIsListLoading] = useState(false);
 
   const user = useCurrentUser();
-  const LOGIN_USER = user?.user_name || DEFAULT_CHAT_USER;
+  const LOGIN_USER = user?.user_name;
 
   const fetchHistoryList = async () => {
+    if (!LOGIN_USER) return;
     try {
       setIsListLoading(true);
 

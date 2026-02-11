@@ -8,12 +8,11 @@ import { ChatHeader } from "@/components/ChatHeader";
 import { ChatArea } from "@/components/ChatArea";
 import { HistoryDrawer } from "@/components/HistoryDrawer";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import { DEFAULT_CHAT_USER } from "@/common/constant";
 import { confirm } from "@/ui/confirm";
 const Home: React.FC = () => {
   const chatRef = useRef<any>(null);
   const user = useCurrentUser();
-  const LOGIN_USER = user?.user_name || DEFAULT_CHAT_USER;
+  const LOGIN_USER = user?.user_name || "";
   console.log("LOGIN_USER:", LOGIN_USER);
   const { historyList, isListLoading, fetchHistoryList } = useChatHistory();
 

@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import request from "@/lib/request";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import { DEFAULT_CHAT_USER } from "@/common/constant";
 import { MessageFile } from "@/types/analytics";
 
 export const useConversation = () => {
@@ -11,11 +10,11 @@ export const useConversation = () => {
   const [isMessageLoading, setIsMessageLoading] = useState(false);
 
   const user = useCurrentUser();
-  const LOGIN_USER = user?.user_name || DEFAULT_CHAT_USER;
+  const LOGIN_USER = user?.user_name;
 
   // 加载消息内容
   const loadConversation = async (convId: string) => {
-    if (isMessageLoading) return;
+    if (isMessageLoading || !LOGIN_USER) return;
     setActiveId(convId);
     setIsMessageLoading(true);
     conversationIdRef.current = convId;
