@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-
 import { useChatHistory } from "@/hooks/useChatHistory";
 import { useConversation } from "@/hooks/useConversation";
 import { ChatHeader } from "@/components/ChatHeader";
@@ -10,6 +9,8 @@ import { HistoryDrawer } from "@/components/HistoryDrawer";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { confirm } from "@/ui/confirm";
 import { useRouter } from "next/navigation";
+import { logoutUser } from "@/services/auth";
+
 const Home: React.FC = () => {
   const chatRef = useRef<any>(null);
   const user = useCurrentUser();
@@ -42,6 +43,12 @@ const Home: React.FC = () => {
       setActiveId(conversationId);
     }
   }, []);
+
+  if (!LOGIN_USER) {
+    logoutUser().then(() => {
+      router.replace("/login");
+    });
+  }
 
   /**
    * 核心逻辑：拦截 Deep Chat 请求并转换为 Dify 接口调用

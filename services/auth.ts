@@ -16,3 +16,8 @@ export const createUser = (params: {
 }): Promise<ApiResponse> => {
   return request.post("/api/register", params);
 };
+
+//登出
+export const logoutUser = (): Promise<ApiResponse> => {
+  return request.post("/api/logout");
+};
