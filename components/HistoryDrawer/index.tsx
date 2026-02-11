@@ -22,7 +22,6 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
   historyList,
   isLoading,
   activeId,
-  onFetchHistory,
   onSelect,
   onDelete,
   onNewChat,

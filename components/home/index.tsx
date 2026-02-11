@@ -9,12 +9,15 @@ import { ChatArea } from "@/components/ChatArea";
 import { HistoryDrawer } from "@/components/HistoryDrawer";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { confirm } from "@/ui/confirm";
+import { useRouter } from "next/navigation";
 const Home: React.FC = () => {
   const chatRef = useRef<any>(null);
   const user = useCurrentUser();
+
   const LOGIN_USER = user?.user_name || "";
   console.log("LOGIN_USER:", LOGIN_USER);
   const { historyList, isListLoading, fetchHistoryList } = useChatHistory();
+  const router = useRouter();
 
   const {
     chatHistory,
@@ -31,6 +34,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     fetchHistoryList();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const conversationId = urlParams.get("conversationId");
+    if (conversationId && conversationId !== activeId) {
+      loadConversation(conversationId);
+      setActiveId(conversationId);
+    }
   }, []);
 
   /**
@@ -147,7 +157,6 @@ const Home: React.FC = () => {
           isOpen={isDrawerOpen}
           onClose={() => {
             setIsDrawerOpen(false);
-            fetchHistoryList();
           }}
           historyList={historyList}
           isLoading={isListLoading}
@@ -155,6 +164,7 @@ const Home: React.FC = () => {
           onFetchHistory={fetchHistoryList}
           onSelect={(id) => {
             setIsDrawerOpen(false);
+            router.replace(`/?conversationId=${id}`);
             loadConversation(id);
           }}
           onDelete={async (e, id) => {
@@ -178,15 +188,20 @@ const Home: React.FC = () => {
           }}
           onNewChat={() => {
             setIsDrawerOpen(false);
+            router.replace(`/`);
             startNewChat();
           }}
         />
         <div className="flex-1 flex flex-col w-full relative">
           <ChatHeader
             onMenuClick={() => {
+              // fetchHistoryList();
               setIsDrawerOpen(true);
             }}
-            onNewChat={startNewChat}
+            onNewChat={() => {
+              router.replace(`/`);
+              startNewChat();
+            }}
           />
 
           <ChatArea
