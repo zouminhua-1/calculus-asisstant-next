@@ -7,7 +7,7 @@ export async function GET(request: Request) {
 
   // 从服务端环境变量获取，不需要 NEXT_PUBLIC_ 前缀，更安全
   const DIFY_API_KEY = process.env.DIFY_API_KEY;
-  const DIFY_BASE_URL = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
+  const DIFY_BASE_URL = process.env.DIFY_BASE_URL;
 
   try {
     const response = await fetch(
@@ -21,8 +21,12 @@ export async function GET(request: Request) {
     );
 
     const data = await response.json();
+
+    console.log("data", data);
+
     return NextResponse.json(data);
   } catch (error) {
+    console.log("ccccc ", error);
     return NextResponse.json(
       { error: "Failed to fetch history" },
       { status: 500 },

@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const conversation_id = searchParams.get("conversation_id");
 
   const apiKey = process.env.DIFY_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
+  const baseUrl = process.env.DIFY_BASE_URL;
 
   try {
     const res = await fetch(

@@ -8,7 +8,9 @@ export async function DELETE(request: Request, context: Context) {
   const { user } = await request.json();
   const { id } = await context.params;
   const apiKey = process.env.DIFY_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
+  const baseUrl = process.env.DIFY_BASE_URL;
+
+  console.log("DIFY_API_KEY", apiKey);
 
   try {
     const res = await fetch(`${baseUrl}/conversations/${id}`, {

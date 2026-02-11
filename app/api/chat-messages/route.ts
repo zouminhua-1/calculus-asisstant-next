@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const body = await request.json();
   const apiKey = process.env.DIFY_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_DIFY_BASE_URL;
+  const baseUrl = process.env.DIFY_BASE_URL;
 
   const res = await fetch(`${baseUrl}/chat-messages`, {
     method: "POST",
