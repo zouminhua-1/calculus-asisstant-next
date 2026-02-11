@@ -54,12 +54,11 @@ const AuthPage: React.FC = () => {
           toast.error("账号或密码错误", { position: "top-center" });
         }
       } else {
-        const { data, error } = await createUser({
+        const { error } = await createUser({
           name,
           pwd: password,
           email,
         });
-        console.log("createUser", data);
         if (!error) {
           toast.success("账号注册成功！请登录", { position: "top-center" });
           setIsLogin(true); // 注册成功后切换回登录
@@ -68,7 +67,7 @@ const AuthPage: React.FC = () => {
         }
       }
     } catch (err) {
-      toast.error("服务器响应失败，请稍后再试");
+      toast.error("服务器响应失败，请稍后再试", { position: "top-center" });
     } finally {
       setIsLoading(false);
     }
@@ -200,7 +199,7 @@ const AuthPage: React.FC = () => {
               {isLoading ? (
                 <>
                   <Loader2 className="animate-spin" size={18} />
-                  <span>正在处理...</span>
+                  <span>{isLogin ? "登录中..." : "创建中..."}</span>
                 </>
               ) : (
                 <>
