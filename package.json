@@ -16,6 +16,7 @@
     "@supabase/supabase-js": "^2.95.3",
     "axios": "^1.13.5",
     "bcryptjs": "^3.0.3",
+    "browser-image-compression": "^2.0.2",
     "deep-chat-react": "^2.4.2",
     "dotenv": "^17.2.4",
     "jose": "^6.1.3",

@@ -10,6 +10,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import { confirm } from "@/ui/confirm";
 import { useRouter } from "next/navigation";
 import { logoutUser } from "@/services/auth";
+import imageCompression from "browser-image-compression";
 
 const Home: React.FC = () => {
   const chatRef = useRef<any>(null);
@@ -63,7 +64,7 @@ const Home: React.FC = () => {
       // 1. 数据提取逻辑 (保持不变)
       if (body instanceof FormData) {
         const message = body.get("message1") as any;
-        userText = JSON.parse(message).text;
+        userText = JSON.parse(message)?.text;
         userFiles = body.getAll("files") as File[];
       } else {
         for (const msg of body.messages ?? []) {
@@ -79,8 +80,34 @@ const Home: React.FC = () => {
       // 2. 调用内部文件上传接口
       let uploadedFileId = "";
       if (userFiles.length > 0) {
+        const isImageFile = userFiles[0].type.startsWith("image/");
+        let processedFile = userFiles[0];
+        if (isImageFile) {
+          try {
+            // 设置压缩选项
+            const options = {
+              maxSizeMB: 2, // 最大大小 2MB
+              maxWidthOrHeight: 1920, // 最大宽度或高度
+              useWebWorker: true, // 使用 Web Worker 提高性能
+              quality: 0.8, // 图片质量 0-1
+            };
+
+            processedFile = await imageCompression(userFiles[0], options);
+            console.log(
+              `原文件大小: ${(userFiles[0].size / 1024 / 1024).toFixed(2)}MB`,
+            );
+            console.log(
+              `压缩后大小: ${(processedFile.size / 1024 / 1024).toFixed(2)}MB`,
+            );
+          } catch (error) {
+            console.error("图片压缩失败:", error);
+            // 如果压缩失败，仍然使用原始文件
+            processedFile = userFiles[0];
+          }
+        }
+
         const fd = new FormData();
-        fd.append("file", userFiles[0]);
+        fd.append("file", processedFile);
         fd.append("user", LOGIN_USER);
 
         const upRes = await fetch("/api/files/upload", {
